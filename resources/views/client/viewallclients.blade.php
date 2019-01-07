@@ -45,7 +45,7 @@
                                 <span class="fa fa-plus" style="background: #2381c6;color: #fff;border-radius: 50%;padding: 4px 5px ;cursor: pointer;"> </span>
                             </a>
                         </div>
-                         
+                       
                     </header>
                     <div class="panel-body" style=" padding: 0px;">
                        <div class="col-xs-12" style="padding: 0px;">
@@ -92,15 +92,7 @@
                                         <span class="fa fa-trash-alt" style="color: #f93885" onclick="$( '#removealert' ).animate({opacity:1}, 200, function() {});
                                         $('#removeid').val('{{$myclient->id}}');"></span>
                                       </a>
-
-
-                                      
-
-
-
-                                      
-
-
+ 
                                      </td>
                                   </tr>          
                                 @endforeach
