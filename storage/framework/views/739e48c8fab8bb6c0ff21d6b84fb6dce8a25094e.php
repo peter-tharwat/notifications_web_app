@@ -7,32 +7,32 @@
                 <?php echo e(csrf_field()); ?>
 
                 <section >
-                    <header class="panel-heading text-right"  style="padding: 5px 6px;">
+                  <header class="panel-heading text-right"  style="padding: 5px 6px;">
+                      
+                      <div class="col-xs-5" style="padding: 0px;">
+                          <span class="hidden-sm" style="padding: 3px;display: inline-block;">اضافة عميل جديد</span>
+                      </div>
+                      <div class="col-xs-7" style="padding: 0px;direction: ltr!important;">
                         
-                        <div class="col-xs-5" style="padding: 0px;">
-                            <span class="hidden-sm" style="padding: 3px;display: inline-block;">اضافة عميل جديد</span>
-                        </div>
-                        <div class="col-xs-7" style="padding: 0px;direction: ltr!important;">
-                          
 
 
-                            <a style="padding: 2px 5px; direction: ltr!important;display: inline-block;float: left;background: transparent;border:none;box-shadow: none;" href="/client" class="btn ">
-                                <span class="fa fa-times" style="background: #ff5f5f;color: #fff;border-radius: 0px;padding: 4px 6px ;cursor: pointer;" > </span>
-                            </a>
+                          <a style="padding: 2px 5px; direction: ltr!important;display: inline-block;float: left;background: transparent;border:none;box-shadow: none;" href="/client" class="btn ">
+                              <span class="fa fa-times" style="background: #ff5f5f;color: #fff;border-radius: 0px;padding: 4px 6px ;cursor: pointer;" > </span>
+                          </a>
 
-                            <span style="padding: 2px 5px; direction: ltr!important;display: inline-block;float: left;" >
-                              <span style="background: #13c4a5;color: #fff;border-radius: 0px;padding:1px 7px; ;cursor: pointer;float: left;" class="btn btn-success" onclick="$('#createclientform').submit();" >
-                                <span class="fa fa-check"  style=""   > </span> حفظ 
+                          <span style="padding: 2px 5px; direction: ltr!important;display: inline-block;float: left;" >
+                            <span style="background: #13c4a5;color: #fff;border-radius: 0px;padding:1px 7px; ;cursor: pointer;float: left;" class="btn btn-success" onclick="$('#createclientform').submit();" >
+                              <span class="fa fa-check"  style=""   > </span> حفظ 
 
-                              </span>
-                                
                             </span>
+                              
+                          </span>
 
 
-                        </div>
+                      </div>
 
 
-                    </header>
+                  </header>
                     <div class="panel-body" style="padding-top: 0px;">
                 
     <div class="col-xs-12 " style="background: #fff;padding: 10px 5px; ">

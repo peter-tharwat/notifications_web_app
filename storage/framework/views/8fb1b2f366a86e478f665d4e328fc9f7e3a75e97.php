@@ -6,7 +6,7 @@
                     <header class="panel-heading text-right" style="padding: 5px 6px;">
                         <div class="col-xs-8" style="padding: 0px;">
                             <span class="hidden-sm" style="padding: 3px;display: inline-block;">عرض كافة العملاء</span>  
-                            <form method="POST" action="/client/destroy/" style="display: inline-block;margin: 0px" id="removeclientform">
+                            <form method="POST" action="/client/destroy" style="display: inline-block;margin: 0px" id="removeclientform">
                               <?php echo e(csrf_field()); ?>
 
                               <input type="hidden" name="id" value="" id="removeid">
@@ -30,8 +30,6 @@
                         </div>
                         <div style="padding: 0px" class="col-xs-2 ">
                           <form method="get" action="/client/search">
-                            
-                         
                           <div class=" navbar-form pull-left shift" style="padding: 0px;margin: 0px;">
                             <i class="fa fa-search text-muted"></i> <input class="input-sm form-control" placeholder="بحث" type="text" style="border:1px solid #13c4a5!important;background: #f2fffd" name="search">
                           </div>
@@ -44,7 +42,7 @@
                                 <span class="fa fa-plus" style="background: #2381c6;color: #fff;border-radius: 50%;padding: 4px 5px ;cursor: pointer;"> </span>
                             </a>
                         </div>
-                         
+                       
                     </header>
                     <div class="panel-body" style=" padding: 0px;">
                        <div class="col-xs-12" style="padding: 0px;">
@@ -91,15 +89,7 @@
                                         <span class="fa fa-trash-alt" style="color: #f93885" onclick="$( '#removealert' ).animate({opacity:1}, 200, function() {});
                                         $('#removeid').val('<?php echo e($myclient->id); ?>');"></span>
                                       </a>
-
-
-                                      
-
-
-
-                                      
-
-
+ 
                                      </td>
                                   </tr>          
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
