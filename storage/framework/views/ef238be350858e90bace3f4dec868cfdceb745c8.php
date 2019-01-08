@@ -11,6 +11,8 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
+ 
 
 	<meta content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui" name="description">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
@@ -19,8 +21,7 @@
 	<!-- Latest compiled and minified CSS -->
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">  
 	<link href="<?php echo e(env('PUBLIC_PATH')); ?>/css/app.v2.css" rel="stylesheet" type="text/css">
-
-
+	
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
@@ -32,10 +33,12 @@
  
 
 	<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet" >
+
   
 </head>
+
 <style type="text/css">
- 
+ 	
   input{
     border-radius: 0px!important;
     box-shadow: none!important;
@@ -83,11 +86,11 @@
 	{
 		padding:10px 5px!important;
 	}
-	body * 
+	  * 
 
 	{
 		font-family: 'Cairo', sans-serif;
-		transition: all .5s ease-in-out;
+	 
 
 
 	}
@@ -133,7 +136,7 @@
 	{
 		font-size: 14px;
 	}
-	 
+	
 	 
 </style>
 
@@ -207,7 +210,7 @@
 	 	</li>
 		</ul>
 		<form action="" class="navbar-form pull-left shift" data-target=".nav-primary" data-toggle="shift:appendTo">
-			<i class="fa fa-search text-muted"></i> <input class="input-sm form-control" placeholder="إجراء سريع" type="text" style="border:1px solid #13c4a5!important;background: #f2fffd">
+			<i class="fa fa-search text-muted"></i> <input class="input-sm form-control" placeholder="إجراء سريع ( قريبا )" type="text" style="border:1px solid #13c4a5!important;background: #f2fffd">
 		</form>
 	</header><!-- / header --><!-- nav -->
 	<nav class="nav-primary hidden-xs nav-vertical" id="nav" style="right:0px;"   >
@@ -215,7 +218,7 @@
 			<li >
 			 
 
-				<a href="#"><i class="fas fa-tachometer-alt fa-lg"></i> <span>لوحة التحكم</span></a>
+				<a href="/"><i class="fas fa-tachometer-alt fa-lg"></i> <span>لوحة التحكم</span></a>
 			</li>
 			<li class="dropdown-submenu">
 				<a href="#">
@@ -406,7 +409,121 @@
 	
 	
 	 <script type="text/javascript" src="<?php echo e(env(' PUBLIC_PATH')); ?>/js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <script type="text/javascript">
+    	(function(){
+    		$('.select2').select2();
+    	})();
+    </script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script>
+ var total_borrow_payback;
+
+$.ajax({
+method: "POST",
+url: "/total_borrow_payback",
+data: {  _token: "<?php echo csrf_token(); ?>" }
+})
+.done(function( msg ) {
     
+   total_borrow_payback=msg;
+   console.log(msg['total_borrow']['USD']);
+     
+
+
+
+
+var ctx = document.getElementById("myChart1").getContext('2d');
+ctx.font  = "'Cairo', sans-serif";
+var myChart1 = new Chart(ctx, {
+    type: 'doughnut',
+ 
+ 
+    data: {
+
+        labels: ["ريال سعودي", "ريال يمني", "ريال عماني", "دولار"],
+        datasets: [{
+          
+            data: [ msg['total_borrow']['RS'], msg['total_borrow']['YER'], msg['total_borrow']['RO'], msg['total_borrow']['USD']],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 206, 86)',
+                'rgb(75, 192, 192)'
+              
+            ],
+          
+           
+            
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+            
+        },
+        legend:{
+    		 labels: {
+    		 	defaultFontFamily :"'Cairo', sans-serif",
+    		 	 
+    		  }
+	        }
+
+    }
+});
+
+
+var myBarChart1 = document.getElementById("myBarChart").getContext('2d');
+
+var myBarChart0 = new Chart(myBarChart1, {
+ 
+    type: 'horizontalBar',
+    data: {
+        labels: ["ريال سعودي", "ريال يمني", "ريال عماني", "دولار"],
+        datasets: [{
+            label: 'إحصائيات السداد',
+            data: [msg['total_payback']['RS'], msg['total_payback']['YER'], msg['total_payback']['RO'], msg['total_payback']['USD']],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 206, 86)',
+                'rgb(75, 192, 192)'    
+            ],   
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                stacked: true,
+            }],
+            yAxes: [{
+                stacked: true
+            }]
+        },
+         
+    },
+   
+});
+
+
+ 
+   
+});
+
+
+
+
+
+
+</script>
  
 </body>
 </html>

@@ -100,6 +100,7 @@
 
 
                            </table>
+                           {{ $emp->links() }}
                        </div>
                     </div>
                 </section> 

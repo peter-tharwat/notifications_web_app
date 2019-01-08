@@ -9,7 +9,7 @@ class ClientController extends Controller
  
     public function index()
     {
-       $client= \App\Client::paginate(50);
+       $client= \App\Client::orderBy('id', 'DESC')->paginate(50);
        $arrayName=array('client'=>$client);
        return view('client.viewallclients',$arrayName); 
     }   
@@ -163,7 +163,9 @@ class ClientController extends Controller
                 'instagram' => $request->instagram,
                 'details' => $request->details,
                 'send_not_methods'=>$send_not_methods,
-                'send_not'=>$send_not
+                'send_not'=>$send_not,
+                'send_not_period'=>$request->send_not_period,
+                
 
             ]
         );

@@ -75,7 +75,12 @@ class NotificationController extends Controller
 
 		return 'this file has been changed successfully';
     }
-
+    public function schadual_run_command()
+    {
+    	NotificationController::NotificationController();
+    	NotificationController::send_pending_whatsapp();
+    	return 0;
+    }
 
 
 

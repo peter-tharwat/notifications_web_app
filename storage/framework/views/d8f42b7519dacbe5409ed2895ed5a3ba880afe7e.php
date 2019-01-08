@@ -129,6 +129,8 @@
 
 
                            </table>
+                           <?php echo e($deal->links()); ?>
+
                        </div>
                     </div>
                 </section> 

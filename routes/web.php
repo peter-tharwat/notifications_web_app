@@ -45,26 +45,34 @@ Route::POST('/deal/destroy','DealController@destroy');
 
  
 Route::get('/message','MessageController@index');
-Route::get('/message/create','MessageController@create');
 Route::get('/message/show/{id}','MessageController@show');
 Route::get('/message/search{search?}','MessageController@search')->where('search', '.*');
-Route::POST('/message','MessageController@store');
+Route::get('/message/create','MessageController@create');
+Route::POST('/message','MessageController@send_message');
 Route::POST('/sendmessage','MessageController@send_message');
 Route::POST('/message/destroy','MessageController@destroy');
 
-Route::GET('/test','NotificationController@send_pending_whatsapp');
 
 
  
-Route::get('/', function () {
-    return view('welcome');
-});
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+
+	Route::get('/', function () {
+	    return view('welcome');
+	});
 
 
+	
+	Route::POST('/getClientsMsgs','MessageController@getClientsMsgs');
+	Route::POST('/getEmpsMsgs','MessageController@getEmpsMsgs');
+
+	
 
 
 }); 
-
+Route::POST('/total_borrow_payback','MessageController@total_borrow_payback');
  
 
 
@@ -77,6 +85,9 @@ Route::get('/register', function(){
 Route::POST('/register', function(){
 	return redirect('/login');
 });
+
+Route::get('/schadual_run_command','NotificationController@schadual_run_command');
+
  
 
 /*

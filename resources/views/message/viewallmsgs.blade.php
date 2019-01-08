@@ -79,7 +79,7 @@
                                      <td>
                                       
                                       <a href="/message/show/{{$mymessage->id}}">
-                                        <span class="fa fa-edit" style="color: #13c4a5"></span>
+                                        <span class="fa fa-search" style="color: #13c4a5"></span>
                                       </a>
                                       
                                       <a href="#">
@@ -100,6 +100,7 @@
 
 
                            </table>
+                           {{ $message->links() }}
                        </div>
                     </div>
                 </section> 

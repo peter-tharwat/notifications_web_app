@@ -9,7 +9,7 @@ class EmpController extends Controller
  
     public function index()
     {
-       $emp= \App\Employee::paginate(50);
+       $emp= \App\Employee::orderBy('id', 'DESC')->paginate(50);
        $arrayName=array('emp'=>$emp);
        return view('emp.viewallemps',$arrayName); 
     }   

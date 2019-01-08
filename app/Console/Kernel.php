@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         
-        $schedule->call('App\Http\Controllers\NotificationController@NotificationController')->hourly();
+        $schedule->call('App\Http\Controllers\NotificationController@NotificationController')->everyMinute();
         $schedule->call('App\Http\Controllers\NotificationController@send_pending_whatsapp')->everyMinute();
         
 

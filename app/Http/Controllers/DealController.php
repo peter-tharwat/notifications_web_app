@@ -10,7 +10,7 @@ class DealController extends Controller
  
     public function index()
     {
-       $deal= \App\Deal::paginate(50);
+       $deal= \App\Deal::orderBy('id', 'DESC')->paginate(50);
        $arrayName=array('deal'=>$deal);
        return view('deal.viewalldeals',$arrayName); 
     }

@@ -97,6 +97,8 @@
 
 
                            </table>
+                           <?php echo e($emp->links()); ?>
+
                        </div>
                     </div>
                 </section> 

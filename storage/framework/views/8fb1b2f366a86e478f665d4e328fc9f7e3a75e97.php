@@ -11,7 +11,7 @@
 
                               <input type="hidden" name="id" value="" id="removeid">
                               
-                            <span class="hidden-sm" style="padding: 3px;display: inline-block; border:1px solid #13c4a5;background: #f2fffd;opacity: 0;" id="removealert">حذف ؟
+                            <span class="hidden-sm" style="padding: 3px;display: inline-block; border:1px solid #13c4a5;background: #ff7373;opacity: 0;color: #fff" id="removealert">حذف ؟
                               <span  style="padding-right: 50px;">
 
                                   
@@ -101,6 +101,8 @@
 
 
                            </table>
+                           <?php echo e($client->links()); ?>
+
                        </div>
                     </div>
                 </section> 

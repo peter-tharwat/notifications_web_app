@@ -12,7 +12,7 @@ class MessageController extends Controller
  
 
 	
-
+/*
 	public function test()
     {
         $date = date("Y-m-d");
@@ -32,11 +32,103 @@ class MessageController extends Controller
 		$mod_date = strtotime($date."+ 1 years");
 		echo date("Y-m-d",$mod_date) . "\n";
     }
+*/
+
+
+
+	
+	public function create()
+    {
+    	return view('message.addnewmsg');
+    }
+
+    public function getEmpsMsgs(Request $request)
+    {
+    	$item=\App\Employee::get(['name','id']); 
+    	$arrayName = array('item' => $item);
+    	return $arrayName;
+    	
+    }
+
+
+    public static function get_messages_home()
+    {
+    	$item=\App\Message::orderBy('id', 'DESC')->paginate(5); 
+    	 return $item;	
+    }
+    public static  function get_deals_home()
+    {
+    	$item=\App\Deal::orderBy('id', 'DESC')->paginate(5); 
+    	 return $item;	
+    }
+
+
+    public static function total_borrow_payback(Request $request)
+    {
+    	$deal  	=\App\Deal::get();
+ 
+
+    	$total=array(
+    		'total_borrow'=>array(
+    			'RS'=>0,
+    			'YER'=>0,
+    			'RO'=>0,
+    			'USD'=>0
+    		),
+    		'total_payback'=>array(
+    			'RS'=>0,
+    			'YER'=>0,
+    			'RO'=>0,
+    			'USD'=>0
+    		) 
+
+    	);
+
+
+    	if(is_object($deal)&&count($deal)>0)
+    	{
+    		for($i=0;$i<count($deal);$i++)
+    		{
+    			if($deal[$i]->deal_currency=='RS'&&$deal[$i]->deal_borrow_payback=='borrow')
+    				$total['total_borrow']['RS']+=$deal[$i]->deal_mount;
+    			else if($deal[$i]->deal_currency=='RO'&&$deal[$i]->deal_borrow_payback=='borrow')
+    				$total['total_borrow']['RO']+=$deal[$i]->deal_mount;
+    			else if($deal[$i]->deal_currency=='YER'&&$deal[$i]->deal_borrow_payback=='borrow')
+    				$total['total_borrow']['YER']+=$deal[$i]->deal_mount;
+    			else if($deal[$i]->deal_currency=='USD'&&$deal[$i]->deal_borrow_payback=='borrow')
+    				$total['total_borrow']['USD']+=$deal[$i]->deal_mount;
+
+    			else if($deal[$i]->deal_currency=='RS'&&$deal[$i]->deal_borrow_payback=='payback')
+    				$total['total_payback']['RS']+=$deal[$i]->deal_mount;
+    			else if($deal[$i]->deal_currency=='RO'&&$deal[$i]->deal_borrow_payback=='payback')
+    				$total['total_payback']['RO']+=$deal[$i]->deal_mount;
+    			else if($deal[$i]->deal_currency=='YER'&&$deal[$i]->deal_borrow_payback=='payback')
+    				$total['total_payback']['YER']+=$deal[$i]->deal_mount;
+    			else if($deal[$i]->deal_currency=='USD'&&$deal[$i]->deal_borrow_payback=='payback')
+    				$total['total_payback']['USD']+=$deal[$i]->deal_mount;
+
+    		}
+    	}
+
+    	return $total;
+
+    	 
+    }
+
+
+
+
+    public function getClientsMsgs(Request $request)
+    {
+    	$item=\App\Client::get(['name','id']); 
+    	$arrayName = array('item' => $item);
+    	return $arrayName;
+    }
 
 
 	public function index()
     {
-       $message= \App\Message::paginate(50);
+       $message= \App\Message::orderBy('id', 'DESC')->paginate(50);
        $arrayName=array('message'=>$message);
        return view('message.viewallmsgs',$arrayName); 
     }
@@ -63,6 +155,22 @@ class MessageController extends Controller
 		$ids= $request->id;
 		$methods= $request->method;
 		$content=$request->content;
+
+
+		if(isset($request->forall)&&$request->forall=='on')
+		{
+			$ids=array();  
+			if($type=='client')
+			{	
+				$temp= \App\Client::get();
+				foreach ($temp as $mytemp)array_push($ids, $mytemp->id);      			 
+			}
+			else if ($type=='emp')
+			{
+				$temp= \App\Employee::get();
+				foreach ($temp as $mytemp)array_push($ids, $mytemp->id);   
+			}
+		}
 		 
 
 
@@ -79,6 +187,11 @@ class MessageController extends Controller
 
         if ((strpos($methods, 'whatsapp') !== false) ) 
         {
+
+
+
+
+
         	for($i = 0;  $i < count($ids) ;$i++)
         	{
         		$phone='201282381045';
@@ -111,6 +224,9 @@ class MessageController extends Controller
 
         	 
         	}
+
+
+
 
         }
 
@@ -166,7 +282,7 @@ class MessageController extends Controller
         		}
 
 
-        		$status='';
+        		$status='OK';
         		try {
          			MessageController::send_sms_msg($phone,$content);
 			    } catch (\Exception $e) {

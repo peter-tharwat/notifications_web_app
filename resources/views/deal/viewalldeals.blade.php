@@ -130,6 +130,7 @@
 
 
                            </table>
+                           {{ $deal->links() }}
                        </div>
                     </div>
                 </section> 
