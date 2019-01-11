@@ -65,7 +65,8 @@ class MessageController extends Controller
 
     public static function total_borrow_payback(Request $request)
     {
-    	$deal  	=\App\Deal::get();
+    	 
+    	$deal  =\App\Deal::get();
  
 
     	$total=array(
@@ -496,15 +497,7 @@ class MessageController extends Controller
 
 	 public static function prepare_send_init_notification($id,$borrow_payback,$mount,$currency,$for){
 	 	$client = \App\Client::where('id',$id)->get()->first();
-
-
-
-
-	 	
-
-
-
-
+ 
 	 	$currency_translated='';
 	 	if($currency=='RS') $currency_translated='ريال سعودي';
 	 	else if($currency=='RO') $currency_translated='ريال عماني';
@@ -528,7 +521,7 @@ class MessageController extends Controller
 مبلغ '.$account['YER'].' ريال يمني 
 مبلغ '.$account['USD'].' دولار
 
-لمشاهدة كشف حسابكم يرجى الضغط على الرابط التالى '.route('track').'
+لمشاهدة كشف حسابكم يرجى الضغط على الرابط التالى '.route('track').'/'.$client->rand_num.'
 
 لاي استفسار بخصوص حسابكم يرجى التواصل مع المحاسب على رقم 00967701041476
 او ارقامنا الاخرى
@@ -585,7 +578,7 @@ $content='رسالة اشعار
 
 يرجى سرعة تسوية حسابكم مع شكرنا وتقديرنا
 
-لمشاهدة كشف حسابكم يرجى الضغط على الرابط التالى '.route('track').'
+لمشاهدة كشف حسابكم يرجى الضغط على الرابط التالى '.route('track').'/'.$client->rand_num.'
 
 لاي استفسار بخصوص حسابكم يرجى التواصل مع المحاسب على رقم 00967701041476
 او ارقامنا الاخرى

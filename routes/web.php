@@ -34,7 +34,7 @@ Route::get('/deal/create','DealController@create');
 Route::get('/deal/{id}/edit','DealController@edit');
 Route::get('/deal/show/{id}','DealController@show');
 Route::get('/deal/search{search?}','DealController@search')->where('search', '.*');
-Route::get('/track', function(){return 0;})->name('track');
+
 Route::POST('/deal','DealController@store');
 Route::POST('/deal/update/{id}','DealController@update');
 Route::POST('/deal/destroy','DealController@destroy');
@@ -58,22 +58,21 @@ Route::POST('/message/destroy','MessageController@destroy');
 	Route::get('/', function () {
 	    return view('welcome');
 	});
-
-	Route::get('/', function () {
-	    return view('welcome');
-	});
+ 
 
 
 	
 	Route::POST('/getClientsMsgs','MessageController@getClientsMsgs');
 	Route::POST('/getEmpsMsgs','MessageController@getEmpsMsgs');
+	Route::POST('/total_borrow_payback','MessageController@total_borrow_payback');
 
-	
 
+
+ 
+ 
 
 }); 
-Route::POST('/total_borrow_payback','MessageController@total_borrow_payback');
- 
+
 
 
 
@@ -87,6 +86,66 @@ Route::POST('/register', function(){
 });
 
 Route::get('/schadual_run_command','NotificationController@schadual_run_command');
+
+
+
+Route::get('/track/{id?}', function ($id=NULL) {
+		$client= \App\Client::where('rand_num',$id)->get()->first();
+		$deal = \App\Deal::where('client_id',$client['id'])->get();
+		if(is_object($deal)&& count($deal)>0)
+		{
+
+
+			$total_borrow_payback = array(
+				'RS' =>0 ,
+				'RO' =>0 ,
+				'YER' =>0 ,
+				'USD' =>0 ,
+				 ); 
+
+			$name=$client['name'];
+			$phone=$client['phone'];
+			$email=$client['email'];
+
+			for($i=0;$i<count($deal);$i++)
+			{
+				if($deal[$i]->deal_borrow_payback=='borrow')
+				{
+					if($deal[$i]->deal_currency=='RS')
+						$total_borrow_payback['RS']+=$deal[$i]->deal_mount;
+					else if($deal[$i]->deal_currency=='RO')
+						$total_borrow_payback['RO']+=$deal[$i]->deal_mount;
+					else if($deal[$i]->deal_currency=='YER')
+						$total_borrow_payback['YER']+=$deal[$i]->deal_mount;
+					else if($deal[$i]->deal_currency=='USD')
+						$total_borrow_payback['USD']+=$deal[$i]->deal_mount;
+
+
+				}
+				else
+				{
+					if($deal[$i]->deal_currency=='RS')
+						$total_borrow_payback['RS']-=$deal[$i]->deal_mount;
+					else if($deal[$i]->deal_currency=='RO')
+						$total_borrow_payback['RO']-=$deal[$i]->deal_mount;
+					else if($deal[$i]->deal_currency=='YER')
+						$total_borrow_payback['YER']-=$deal[$i]->deal_mount;
+					else if($deal[$i]->deal_currency=='USD')
+						$total_borrow_payback['USD']-=$deal[$i]->deal_mount;
+				}
+
+			}
+
+			$arrayName = array('deal' =>  $deal,'total_borrow_payback'=>$total_borrow_payback,'name'=>$name,'phone'=>$phone,'email'=>$email);
+			return view('client.frontendclient',$arrayName) ;
+		}
+		else
+		{
+			return 'لم يتم العثور علي معاملات';
+		}
+	})->name('track');
+
+
 
  
 

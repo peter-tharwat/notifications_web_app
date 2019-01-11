@@ -88,7 +88,7 @@ class ClientController extends Controller
         $client->twitter = $request->twitter;
         $client->linkedin = $request->linkedin;
         $client->instagram = $request->instagram;
-        $client->rand_num=date('Y-m-d H:i:s') . rand('10000000','1000000000');
+        $client->rand_num=rand('10000000','1000000000').date('YmdHis');
         $client->details = $request->details;
         $client->save();
 

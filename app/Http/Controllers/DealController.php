@@ -77,8 +77,8 @@ class DealController extends Controller
 
 
             }
-
-            $client->last_send=date('Y-m-d H:i:s');;
+            $client->rand_num=rand('10000000','1000000000').date('YmdHis');
+            $client->last_send=date('Y-m-d H:i:s');
             $client->send_not_methods= $send_not_methods;
             $client->send_not_period=$request->send_not_period;
             $client->save();

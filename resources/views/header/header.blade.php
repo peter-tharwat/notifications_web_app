@@ -216,14 +216,94 @@
 
 			
 			@endforeach
+
+			<li class="">
+				<div style=" background: #5191d1;height: 50px;width: 300px;color: #fff;padding: 0px;">
+					 <div class="col-xs-1" style="padding:15px 0px 0px ;background: #333;height: 50px;">
+					 	<span style="transform: rotate(270deg);display: inline-block;padding: 0px;"  >صرف</span>
+					 </div>
+					 <div class="col-xs-11" style="padding:  0px">
+					 	<div style="padding: 2px 0px;height: 25px; " class="col-xs-6 text-center">
+							<span id="borrow_RS"></span>
+							ريال سعودي
+						</div>
+						<div style="padding: 2px 0px;height: 25px; " class="col-xs-6 text-center">
+							<span id="borrow_RO"></span> ريال عماني
+						</div>
+						<div style="padding: 2px 0px ;height: 25px;" class="col-xs-6 text-center">
+							<span id="borrow_YER"></span> ريال يمني
+						</div>
+						<div style="padding: 2px 0px ;height: 25px;" class="col-xs-6 text-center">
+							<span id="borrow_USD"></span> دولار
+						</div>
+						
+					 </div>
+					
+
+				</div>
+				
+			</li>
+			<li>
+				<div style="width: 25px;background: #3fcf7f;height: 50px;width: 300px;color: #fff;padding: 0px;"  >
+
+					<div class="col-xs-1" style="padding:15px 5px 0px 0px; ;background: #333;height: 50px;">
+					 	<span style="transform: rotate(270deg);display: inline-block;padding: 0px;"  >قيد</span>
+					 </div>
+					 <div class="col-xs-11" style="padding:  0px">
+					 	<div style="padding: 2px 0px ;height: 25px;" class="col-xs-6 text-center">
+							<span id="payback_RS"></span>
+							ريال سعودي
+						</div>
+						<div style="padding: 2px 0px;height: 25px; " class="col-xs-6 text-center">
+							<span id="payback_RO"></span> ريال عماني
+						</div>
+						<div style="padding: 2px 0px;height: 25px; " class="col-xs-6 text-center">
+							<span id="payback_YER"></span> ريال يمني
+						</div>
+						<div style="padding: 2px 0px ;height: 25px;" class="col-xs-6 text-center">
+							<span id="payback_USD"></span> دولار
+						</div>
+						
+					 </div>
+				</div>
+			</li>
+
+			<li>
+				<div style="width: 25px;background: #00bfff;height: 50px;width: 300px;color: #fff;padding: 0px;"  >
+
+					<div class="col-xs-1" style="padding:15px 5px 0px 0px; ;background: #333;height: 50px;">
+					 	<span style="transform: rotate(270deg);display: inline-block;padding: 0px;"  >باق</span>
+					 </div>
+					 <div class="col-xs-11" style="padding:  0px">
+					 	<div style="padding: 2px 0px ;height: 25px;" class="col-xs-6 text-center">
+							<span id="charge_RS"></span>
+							ريال سعودي
+						</div>
+						<div style="padding: 2px 0px;height: 25px; " class="col-xs-6 text-center">
+							<span id="charge_RO"></span> ريال عماني
+						</div>
+						<div style="padding: 2px 0px;height: 25px; " class="col-xs-6 text-center">
+							<span id="charge_YER"></span> ريال يمني
+						</div>
+						<div style="padding: 2px 0px ;height: 25px;" class="col-xs-6 text-center">
+							<span id="charge_USD"></span> دولار
+						</div>
+						
+					 </div>
+				</div>
+			</li>
+
+
+
+
 	 	<li>
 
 	 		 
 	 	</li>
 		</ul>
-		<form action="" class="navbar-form pull-left shift" data-target=".nav-primary" data-toggle="shift:appendTo">
+		{{-- <form action="" class="navbar-form pull-left shift" data-target=".nav-primary" data-toggle="shift:appendTo">
 			<i class="fa fa-search text-muted"></i> <input class="input-sm form-control" placeholder="إجراء سريع ( قريبا )" type="text" style="border:1px solid #13c4a5!important;background: #f2fffd">
-		</form>
+		</form> --}}
 	</header><!-- / header --><!-- nav -->
 	<nav class="nav-primary hidden-xs nav-vertical" id="nav" style="right:0px;"   >
 		<ul class="nav" data-offset-top="50" data-spy="affix" >
@@ -450,7 +530,24 @@ data: {  _token: "<?php echo csrf_token(); ?>" }
 .done(function( msg ) {
     
    total_borrow_payback=msg;
-   console.log(msg['total_borrow']['USD']);
+
+   $('#borrow_USD').text(msg['total_borrow']['USD']);
+   $('#borrow_RO').text(msg['total_borrow']['RO']);
+   $('#borrow_RS').text(msg['total_borrow']['RS']);
+   $('#borrow_YER').text(msg['total_borrow']['YER']);
+
+
+   $('#payback_USD').text(msg['total_payback']['USD']);
+   $('#payback_RO').text(msg['total_payback']['RO']);
+   $('#payback_RS').text(msg['total_payback']['RS']);
+   $('#payback_YER').text(msg['total_payback']['YER']);
+ 
+   $('#charge_USD').text(msg['total_borrow']['USD'] - msg['total_payback']['USD']);
+   $('#charge_RO').text( msg['total_borrow']['RO']  - msg['total_payback']['RO']);
+   $('#charge_RS').text( msg['total_borrow']['RS']  - msg['total_payback']['RS']);
+   $('#charge_YER').text(msg['total_borrow']['YER'] - msg['total_payback']['YER']);
+ 
+    
      
 
 
