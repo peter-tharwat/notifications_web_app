@@ -213,7 +213,13 @@
 
                                       </td>
                                       <td>{{ $mydeal->deal_mount }}</td>
-                                      <td>{{ $mydeal->deal_currency }}</td>
+                                      <td> 
+                                         <?php if($mydeal->deal_currency=='RS')echo "ريال سعودي"; ?> 
+                                         <?php if($mydeal->deal_currency=='RO')echo "ريال عماني"; ?> 
+                                            <?php if($mydeal->deal_currency=='YER')echo "ريال يمني"; ?> 
+                                              <?php if($mydeal->deal_currency=='USD')echo "دولار"; ?> 
+
+                                      </td>
                                       <td>{{ $mydeal->created_at }}</td>
                                       <td>
 
