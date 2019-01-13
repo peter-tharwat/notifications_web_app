@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Hash;
 
 class EmpController extends Controller
 {
@@ -87,7 +88,7 @@ class EmpController extends Controller
         $request->validate(
             ['name'=>'required']
         );
-        
+
         $pass=$request->password;
         if (Hash::needsRehash($request->password))
         {
