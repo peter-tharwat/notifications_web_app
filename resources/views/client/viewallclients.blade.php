@@ -61,7 +61,8 @@
                                </thead>
                                <tbody>
                                 @foreach($client as $myclient)
-                                  <tr>
+                                @if(App\Http\Controllers\MessageController::is_calc_account($myclient->id))
+                                  <tr >
                                      <td>{{  $myclient->id }}</td>
                                      <td>{{  $myclient->name }}</td>
                                      <td>{{  $myclient->email }}</td>
@@ -71,7 +72,7 @@
                                       <a href="/client/{{$myclient->id}}/edit">
                                         <span class="fa fa-edit" style="color: #13c4a5"></span>
                                       </a>
-                                      <a href="#">
+                                      <a href="/client/details/{{ $myclient->id }}">
                                         <span class="fa fa-file-invoice" style="color: #13c4a5;"></span>
                                       </a>
 
@@ -94,7 +95,8 @@
                                       </a>
  
                                      </td>
-                                  </tr>          
+                                  </tr>  
+                                  @endif        
                                 @endforeach
                                         
 

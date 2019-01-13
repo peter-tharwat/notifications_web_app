@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>نظام المعاملات | وكالة اوكي للسفريات </title>
+	<title>نظام ارصدة العملاء | وكالة اوكي للسفريات </title>
 		
 		<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 

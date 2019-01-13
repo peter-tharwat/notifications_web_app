@@ -658,6 +658,83 @@ $content='رسالة اشعار
 	 }
 
 
+
+
+
+
+
+     public static function calc_account_deal($id){
+
+        $client = \App\Client::where('id',$id)->get()->first();
+        $deal = \App\Deal::where('client_id',$id)->get();
+
+        $USD_B   = 0; //borrow
+        $RO_B    = 0; //borrow
+        $RS_B    = 0; //borrow
+        $YER_B   = 0; //borrow
+
+        $USD_P   = 0; //payback
+        $RO_P    = 0; //payback
+        $RS_P    = 0; //payback
+        $YER_P   = 0; //payback
+
+
+        for ($i = 0 ;$i <count($deal);$i++ )
+        {
+            //return $deal[$i];
+            if($deal[$i]->deal_currency=='USD')
+            {
+                if($deal[$i]->deal_borrow_payback=='borrow')
+                    $USD_B+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $USD_P+=$deal[$i]->deal_mount;
+            }
+            else if($deal[$i]->deal_currency=='RO')
+            {
+
+                if($deal[$i]->deal_borrow_payback=='borrow')
+                    $RO_B+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $RO_P+=$deal[$i]->deal_mount;
+
+            }
+            else if($deal[$i]->deal_currency=='RS')
+            {
+                //return 0;
+                if($deal[$i]->deal_borrow_payback=='borrow') 
+                    $RS_B+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $RS_P+=$deal[$i]->deal_mount;
+            }
+            else if($deal[$i]->deal_currency=='YER')
+            {
+                if($deal[$i]->deal_borrow_payback=='borrow')
+                    $YER_B+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $YER_P+=$deal[$i]->deal_mount;
+            }
+
+        }
+
+        $account=array(
+            'USD_B'=>$USD_B,
+            'RO_B' =>$RO_B,
+            'RS_B' =>$RS_B,
+            'YER_B'=>$YER_B,
+            'USD_P'=>$USD_P,
+            'RO_P' =>$RO_P,
+            'RS_P' =>$RS_P,
+            'YER_P'=>$YER_P
+        );
+
+        return $account;
+     }
+
+
+
+
+
+
 	 public static function is_calc_account($id){
 
 	 	$client = \App\Client::where('id',$id)->get()->first();

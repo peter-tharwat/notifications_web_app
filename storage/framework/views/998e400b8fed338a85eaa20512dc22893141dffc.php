@@ -78,15 +78,15 @@
               </div> 
               <div class="col-xs-3">
                 
-                <input type="" name="mount" class="form-control" style="width: 100%;" value="<?php echo e($mydeal->mount); ?>">
+                <input type="" name="mount" class="form-control" style="width: 100%;" value="<?php echo e($mydeal->deal_mount); ?>">
               </div>
 
               <div class="col-xs-4">
                <select class="form-control select2 dealtype" style="width: 100%;padding: 0px;" name="currency"   > 
-                <option value="RS" <?php if($mydeal->currency=='RS')echo "selected"; ?>>ريال سعودي</option>
-                <option value="RO" <?php if($mydeal->currency=='RO')echo "selected"; ?>>ريال عماني</option>
-                <option value="YER" <?php if($mydeal->currency=='YER')echo "selected"; ?>>ريال يمني</option>
-                <option value="USD" <?php if($mydeal->currency=='USD')echo "selected"; ?>>دولار</option>
+                <option value="RS" <?php if($mydeal->deal_currency=='RS')echo "selected"; ?>>ريال سعودي</option>
+                <option value="RO" <?php if($mydeal->deal_currency=='RO')echo "selected"; ?>>ريال عماني</option>
+                <option value="YER" <?php if($mydeal->deal_currency=='YER')echo "selected"; ?>>ريال يمني</option>
+                <option value="USD" <?php if($mydeal->deal_currency=='USD')echo "selected"; ?>>دولار</option>
               </select>
               </div>
            </div>

@@ -58,7 +58,8 @@
                                </thead>
                                <tbody>
                                 <?php $__currentLoopData = $client; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $myclient): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                  <tr>
+                                <?php if(App\Http\Controllers\MessageController::is_calc_account($myclient->id)): ?>
+                                  <tr >
                                      <td><?php echo e($myclient->id); ?></td>
                                      <td><?php echo e($myclient->name); ?></td>
                                      <td><?php echo e($myclient->email); ?></td>
@@ -68,7 +69,7 @@
                                       <a href="/client/<?php echo e($myclient->id); ?>/edit">
                                         <span class="fa fa-edit" style="color: #13c4a5"></span>
                                       </a>
-                                      <a href="#">
+                                      <a href="/client/details/<?php echo e($myclient->id); ?>">
                                         <span class="fa fa-file-invoice" style="color: #13c4a5;"></span>
                                       </a>
 
@@ -91,7 +92,8 @@
                                       </a>
  
                                      </td>
-                                  </tr>          
+                                  </tr>  
+                                  <?php endif; ?>        
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         
 

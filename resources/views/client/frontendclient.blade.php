@@ -29,7 +29,7 @@
 		}
 	</style>
 
-	<div class="col-xs-12 content  " style="background: #ffffffcc;padding: 0px;position: relative;" >
+	<div class="col-xs-12 content  " style="background: #ffffffcc;padding: 0px;position: relative; min-height: 700px;" >
 		 
 		 <div class="col-xs-12 text-center" style="font-size: 26px;background: #444;color: #fff;padding: 6px 0px;margin: 0px">
 		 	-- وكالة اوكي للسفريات --
@@ -99,7 +99,7 @@
 
 			 	@foreach($deal as $mydeal)
 				 	<div class="col-xs-12" style="border:1px solid #2381c6;padding: 5px;margin-bottom: 10px;position: relative;">
-				 		<div style="position: absolute;height: 40px;width: 120px;background: #2381c6;left: 0px;top: 0px;color: #fff;padding: 6px 0px " class="text-center">
+				 		<div style="position: absolute;height: 40px;width: 120px;background: #2381c6;left: 0px;top: 0px;color: #fff;padding: 6px 0px ;z-index: 111" class="text-center">
 				 			<?php if($mydeal->deal_borrow_payback=='payback')echo "قيد";else echo "صرف"; ?>
 				 		</div>
 				 		<div class="col-xs-3 text-center" style="padding: 0px;background: #2381c6;border-radius: 5px; ">
