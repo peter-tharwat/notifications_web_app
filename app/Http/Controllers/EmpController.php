@@ -40,6 +40,15 @@ class EmpController extends Controller
         $emp->linkedin = $request->linkedin;
         $emp->instagram = $request->instagram;
         
+
+        $pass=$request->password;
+        if (Hash::needsRehash($request->password))
+        {
+          $pass=  Hash::make($request->password);
+          $emp->password=$pass;
+        }
+
+
         $emp->details = $request->details;
         $emp->save();
 
@@ -78,6 +87,13 @@ class EmpController extends Controller
         $request->validate(
             ['name'=>'required']
         );
+        
+        $pass=$request->password;
+        if (Hash::needsRehash($request->password))
+        {
+          $pass=  Hash::make($request->password);
+          $emp->password=$pass;
+        }
 
         $emp =   \App\Employee::where('id',$id)
         ->update(
@@ -91,7 +107,8 @@ class EmpController extends Controller
                 'twitter' => $request->twitter,
                 'linkedin' => $request->linkedin,
                 'instagram' => $request->instagram,
-                'details' => $request->details 
+                'details' => $request->details ,
+                'password' => $pass 
             ]
         );
 

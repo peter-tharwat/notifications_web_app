@@ -122,6 +122,15 @@
                 </div>
 
               </div>
+              <div class="col-xs-12" style="padding: 6px;">
+                <div class="col-xs-3 text-left"  style="padding: 5px 0px; font-size: 13px;">
+                كلمة المرور
+                </div>
+                <div class="col-xs-9">
+                  <input type="" name="password" class="form-control">
+                </div>
+
+              </div>
                 <div class="col-xs-12">
                 <hr>
               </div>
