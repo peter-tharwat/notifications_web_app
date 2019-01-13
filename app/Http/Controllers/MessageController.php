@@ -735,7 +735,7 @@ $content='رسالة اشعار
 
 
 
-	 public static function is_calc_account($id){
+	 public static function calc_account_client($id){
 
 	 	$client = \App\Client::where('id',$id)->get()->first();
 		$deal = \App\Deal::where('client_id',$id)->get();
@@ -782,10 +782,72 @@ $content='رسالة اشعار
 
 		}
 
- 		if($USD>0||$YER>0||$RO>0||$RS>0)
- 			return 1;
-		return 0;
+ 		$account=array(
+            'USD'=>$USD,
+            'RO' =>$RO,
+            'RS' =>$RS,
+            'YER'=>$YER 
+        );
+
+        return $account;
 	 }
+
+
+
+     public static function is_calc_account($id){
+
+        $client = \App\Client::where('id',$id)->get()->first();
+        $deal = \App\Deal::where('client_id',$id)->get();
+
+        $USD    = 0;
+        $RO     = 0;
+        $RS     = 0;
+        $YER    = 0;
+
+        for ($i = 0 ;$i <count($deal);$i++ )
+        {
+            //return $deal[$i];
+            if($deal[$i]->deal_currency=='USD')
+            {
+                if($deal[$i]->deal_borrow_payback=='borrow')
+                    $USD+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $USD-=$deal[$i]->deal_mount;
+            }
+            else if($deal[$i]->deal_currency=='RO')
+            {
+
+                if($deal[$i]->deal_borrow_payback=='borrow')
+                    $RO+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $RO-=$deal[$i]->deal_mount;
+
+            }
+            else if($deal[$i]->deal_currency=='RS')
+            {
+                //return 0;
+                if($deal[$i]->deal_borrow_payback=='borrow') 
+                    $RS+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $RS-=$deal[$i]->deal_mount;
+            }
+            else if($deal[$i]->deal_currency=='YER')
+            {
+                if($deal[$i]->deal_borrow_payback=='borrow')
+                    $YER+=$deal[$i]->deal_mount;
+                else if ($deal[$i]->deal_borrow_payback=='payback')
+                    $YER-=$deal[$i]->deal_mount;
+            }
+
+        }
+
+        if($USD>0||$YER>0||$RO>0||$RS>0)
+            return 1;
+        return 0;
+     }
+
+
+
 
 
 

@@ -53,6 +53,16 @@
                                        <td>الاسم</td>
                                        <td>البريد الاكتروني</td>
                                        <td>الهاتف</td>
+
+
+                                       <td style="width: 70px;background: #ffffb9;display: inline-block;text-align: center;">سعودي</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">يمني</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">عماني</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">دولار</td>
+                                       <td style="width: 50px;background: #cbffb9;display: inline-block;text-align: center;padding:6px 0px;">اشعار</td>
+
+
+                                       
                                        <td>عملية</td>
                                    </tr>
                                </thead>
@@ -64,6 +74,27 @@
                                      <td><?php echo e($myclient->name); ?></td>
                                      <td><?php echo e($myclient->email); ?></td>
                                      <td><?php echo e($myclient->phone); ?></td>
+
+                                     <?php $account=\app\Http\Controllers\MessageController::calc_account_client($myclient->id) ?>
+                                       <td style="width: 70px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;"><?php echo e($account['RS']); ?></td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;"><?php echo e($account['YER']); ?></td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;"><?php echo e($account['RO']); ?></td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;"><?php echo e($account['USD']); ?></td>
+                                        <td style="width: 50px;background: #cbffb9;display: inline-block;text-align: center;padding:6px 0px;">
+
+                                          <?php if($myclient->send_not=='on'): ?>
+                                          <span class="fa fa-check" style="color: green"></span>
+                                          <?php endif; ?>
+                                          <?php if($myclient->send_not!='on'): ?>
+                                          <span class="fa fa-times" style="color: red"></span> 
+                                          <?php endif; ?>
+
+                                        </td>
+
+
+
+
+
                                      <td>
                                       
                                       <a href="/client/<?php echo e($myclient->id); ?>/edit">

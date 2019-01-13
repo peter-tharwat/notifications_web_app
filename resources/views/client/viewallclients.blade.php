@@ -56,6 +56,16 @@
                                        <td>الاسم</td>
                                        <td>البريد الاكتروني</td>
                                        <td>الهاتف</td>
+
+
+                                       <td style="width: 70px;background: #ffffb9;display: inline-block;text-align: center;">سعودي</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">يمني</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">عماني</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">دولار</td>
+                                       <td style="width: 50px;background: #cbffb9;display: inline-block;text-align: center;padding:6px 0px;">اشعار</td>
+
+
+                                       
                                        <td>عملية</td>
                                    </tr>
                                </thead>
@@ -67,6 +77,27 @@
                                      <td>{{  $myclient->name }}</td>
                                      <td>{{  $myclient->email }}</td>
                                      <td>{{  $myclient->phone }}</td>
+
+                                     <?php $account=\app\Http\Controllers\MessageController::calc_account_client($myclient->id) ?>
+                                       <td style="width: 70px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">{{ $account['RS'] }}</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">{{ $account['YER'] }}</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">{{ $account['RO'] }}</td>
+                                       <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">{{ $account['USD'] }}</td>
+                                        <td style="width: 50px;background: #cbffb9;display: inline-block;text-align: center;padding:6px 0px;">
+
+                                          @if($myclient->send_not=='on')
+                                          <span class="fa fa-check" style="color: green"></span>
+                                          @endif
+                                          @if($myclient->send_not!='on')
+                                          <span class="fa fa-times" style="color: red"></span> 
+                                          @endif
+
+                                        </td>
+
+
+
+
+
                                      <td>
                                       
                                       <a href="/client/{{$myclient->id}}/edit">
