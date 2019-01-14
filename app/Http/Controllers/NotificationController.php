@@ -17,6 +17,8 @@ class NotificationController extends Controller
 
     		for($i=0;$i<count($client);$i++)
     		{
+    			 
+
     			 $mount=MessageController::is_calc_account($client[$i]->id);
     			 if($mount)
 	    			 {
@@ -32,7 +34,7 @@ class NotificationController extends Controller
 	 					        $mod_date= date("Y-m-d H:i:s",$mod_date);
 	 
 	 
-	 				            $client =   \App\Client::where('id',$client[$i]->id)
+	 				            $client1 =   \App\Client::where('id',$client[$i]->id)
 	 				        	->update(
 	 				            [
 	 				            	'next_send'=>$mod_date,
@@ -42,7 +44,18 @@ class NotificationController extends Controller
 	 
 	 	    			 }
 	    			}
-	    		else $client[$i]->send_not='off';
+
+
+
+	    		else{ 
+
+	    			$client2 =   \App\Client::where('id',$client[$i]->id)
+		        	->update(
+		            [
+		            	'send_not'=>'off'
+		             
+		            ]);			 
+	    		}
     		}
     	}   	
     }
