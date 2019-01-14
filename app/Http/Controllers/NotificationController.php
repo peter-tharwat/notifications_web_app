@@ -24,7 +24,7 @@ class NotificationController extends Controller
 	    			  	MessageController::send_notification($client[$i]->id,$client[$i]->send_not_methods);
 
 					    	$date = date("Y-m-d H:i:s");
-				            $mod_date = strtotime($date.$client[$i]->send_period);
+				            $mod_date = strtotime($date.$client[$i]->send_not_period);
 				            $mod_date= date("Y-m-d H:i:s",$mod_date);
 
            		 			$client[$i]->next_send=$mod_date;

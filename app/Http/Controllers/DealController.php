@@ -71,7 +71,7 @@ class DealController extends Controller
 
                 $date = date("Y-m-d");
                 $mod_date;
-                $mod_date = strtotime($date.$client->next_send);
+                $mod_date = strtotime($date.$client->send_not_period);
                 $mod_date= date("Y-m-d H:i:s",$mod_date);
                 $client->next_send=$mod_date;
 

@@ -46,7 +46,7 @@
                     </header>
                     <div class="panel-body" style=" padding: 0px;">
                        <div class="col-xs-12" style="padding: 0px;overflow: auto;">
-                           <table class="table" style="padding: 0px;">
+                           <table class="table" style="padding: 0px;min-width: 843px">
                                <thead class="thead" style="background: #f2fffd;padding: 5px ">
                                    <tr>
                                        <td>كود</td>

@@ -87,6 +87,26 @@
                                     
                                   </div>
                                 </div>
+
+                                <div class="col-xs-12" style="padding: 0px;">
+                                  <div class="col-xs-3 text-left"  style="padding: 5px 0px;font-size: 13px; ">
+                                  آخر اشعار 
+                                  </div>
+                                  <div class="col-xs-9 " style="padding: 5px 10px;">
+                                    {{ $client['last_send'] }}
+                                  </div>
+                                </div>
+                                <div class="col-xs-12" style="padding: 0px;">
+                                  <div class="col-xs-3 text-left"  style="padding: 5px 0px;font-size: 13px; ">
+                                  الإشعار القادم
+                                  </div>
+                                  <div class="col-xs-9 " style="padding: 5px 10px;">
+                                    {{ $client['next_send'] }}
+                                  </div>
+                                </div>
+
+
+
                                <div class="col-xs-12" style="padding: 0px;">
                                   <div class="col-xs-3 text-left"  style="padding: 5px 0px;font-size: 13px; ">
                                   عبر

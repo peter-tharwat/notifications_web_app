@@ -52,7 +52,7 @@ class ClientController extends Controller
              
             $date = date("Y-m-d H:i:s");
             $mod_date;
-            $mod_date = strtotime($date.$client->next_send);
+            $mod_date = strtotime($date.$client->send_not_period);
             $mod_date= date("Y-m-d H:i:s",$mod_date);
 
 
@@ -147,6 +147,13 @@ class ClientController extends Controller
         }
 
 
+        $date = date("Y-m-d H:i:s");
+        $mod_date;
+        $mod_date = strtotime($date.$request->send_not_period);
+        $mod_date= date("Y-m-d H:i:s",$mod_date);
+
+
+        
 
 
         $client =   \App\Client::where('id',$id)
@@ -165,10 +172,12 @@ class ClientController extends Controller
                 'send_not_methods'=>$send_not_methods,
                 'send_not'=>$send_not,
                 'send_not_period'=>$request->send_not_period,
+                'next_send'=>$mod_date 
                 
 
             ]
         );
+
 
         return redirect('/client')->with('data', ['alert'=>'تم تحديث بيانات العميل '.$client['name'] ,'alert-type'=>'success']);
 
