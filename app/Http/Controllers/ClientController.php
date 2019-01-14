@@ -244,7 +244,7 @@ class ClientController extends Controller
      public function details($id)
     {
         $client=\App\Client::where('id',$id)->get()->first();
-        $deal= \App\Deal::where('client_id',$id)->get();
+        $deal= \App\Deal::orderBy('id', 'DESC')->where('client_id',$id)->get();
         $arrayName=array('client'=>$client,'deal'=>$deal);
        return view('client.clientdeal',$arrayName);
     }

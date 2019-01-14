@@ -13,6 +13,29 @@
                         <div class="col-xs-5" style="padding: 0px;">
                             <span class="hidden-sm" style="padding: 3px;display: inline-block;">صفحة تفاصيل العميل</span>
                         </div>
+                        <div class="col-xs-7" style="direction: unset;text-align: left;padding: 3px 7px;">
+
+                          <a href="/client/{{$client['id']}}/edit" style="padding: 3px 7px;">
+                            <span class="fa fa-edit" style="color: #13c4a5"></span>
+                          </a>
+
+                          <a href="#">
+                            <span class="fa fa-envelope" style="color: #13c4a5;"
+                            onclick="
+                            $('#message_id_form').val('{{$client['id']}}');
+                            $('#message_type_form').val('client');
+                            $('.message_panel').animate({opacity:1},300,function(){
+                              $('.message_panel textarea').css('border','1px solid #13c4a5');
+                            });"></span>
+                          </a>
+
+                          
+
+
+
+
+
+                        </div>
            
                     </header>
                     <div class="panel-body" style="padding-top: 0px;">
@@ -64,15 +87,21 @@
                                     
                                   </div>
                                 </div>
-                             {{--    <div class="col-xs-12" style="padding: 0px;">
+                               <div class="col-xs-12" style="padding: 0px;">
                                   <div class="col-xs-3 text-left"  style="padding: 5px 0px;font-size: 13px; ">
                                   عبر
                                   </div>
                                   <div class="col-xs-9 " style="padding: 5px 10px;">
 
-                                    <span class="fab fa-whatsapp" style="color: green"></span> - <span class="far fa-envelope" style="color: green"></span>
+                                    <?php if (strpos($client['send_not_methods'] , 'whatsapp') !== false) {echo '<span class="fab fa-whatsapp" style="color:#3fcf7f;font-size: 16px; "></span>';}?>
+
+                                      <?php    if (strpos($client['send_not_methods'] , 'email') !== false) {echo '-<span class="far fa-envelope" style="color:#3fcf7f;font-size: 16px; "></span>';}?>
+
+                                      <?php   if (strpos($client['send_not_methods'], 'sms') !== false) {echo '-<span class="fas fa-mobile-alt" style="color:#3fcf7f;font-size: 16px; "></span>';}?> 
+
+
                                   </div>
-                                </div> --}}
+                                </div>  
                                 <div class="col-xs-12" style="padding: 0px;">
                                   <div class="col-xs-3 text-left"  style="padding: 5px 0px;font-size: 13px; ">
                                   كل
@@ -93,7 +122,7 @@
                               <h6 style="color: #444;"><span class="fas fa-info-circle" style="padding: 0px 5px;color: #13c4a5"></span>دفتر الحساب </h6>
                               <div style="height: 1px; background: #13c4a5;"></div>
                               <div class="col-xs-12" style="padding: 20px 5px 0px;">
-                                <div class="col-xs-2">
+                                <div class="col-xs-2" style="    padding-top: 24px;">
                                   <div   style="padding: 15px 0px 0px; background: rgb(51, 51, 51); height: 50px;border-radius: 10px;max-width: 29px;"><span style="transform: rotate(270deg); display: inline-block; padding: 0px;color: #fff;position: relative;left: -1px;">خصم</span></div>
                                 </div>
 
@@ -139,7 +168,7 @@
                               </div>
 
                               <div class="col-xs-12" style="padding: 0px 5px;">
-                                <div class="col-xs-2">
+                                <div class="col-xs-2" style="    padding-top: 24px;">
                                   <div   style="padding: 15px 0px 0px; background: rgb(51, 51, 51); height: 50px;border-radius: 10px;max-width: 29px;"><span style="transform: rotate(270deg); display: inline-block; padding: 0px;color: #fff;position: relative;left: -5px;">قيد</span></div>
                                 </div>
 
@@ -183,6 +212,92 @@
 
 
                               </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              <div class="col-xs-12" style="padding: 0px 5px;">
+                                <div class="col-xs-2" style="    padding-top: 24px;">
+                                  <div   style="padding: 15px 0px 0px; background: rgb(51, 51, 51); height: 50px;border-radius: 10px;max-width: 29px;"><span style="transform: rotate(270deg); display: inline-block; padding: 0px;color: #fff;position: relative;left: -5px;">باق</span></div>
+                                </div>
+
+                                <div class="col-xs-10">
+                                  <div class="col-xs-3">
+                                    <div class="col-xs-12 text-center" style="padding: 0px; box-shadow: 0px 0px 9px #bbb;padding: 20px 0px ;font-size: 13px;overflow: hidden; 
+                                    <?php if ($account['RS_B']-$account['RS_P']==0)echo "background: #505050";else echo "background: #2381c6"; ?>
+                                    
+
+                                     ;color: #fff">
+                                      <span style="font-size: 25px;color: #fff">{{ $account['RS_B']-$account['RS_P'] }}</span>
+                                      <br>
+                                     ر-س
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-3">
+                                    <div class="col-xs-12 text-center" style="padding: 0px; box-shadow: 0px 0px 9px #bbb;padding: 20px 0px ;font-size: 13px;overflow: hidden;
+                                    <?php if ($account['YER_B']-$account['YER_P']==0)echo "background: #505050";else echo "background: #2381c6"; ?>
+                                    ;color: #fff">
+                                      <span style="font-size: 25px;color: #fff">{{ $account['YER_B']-$account['YER_P'] }}</span>
+                                      <br>
+                                     ر-ي
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-3">
+                                    <div class="col-xs-12 text-center" style="padding: 0px; box-shadow: 0px 0px 9px #bbb;padding: 20px 0px ;font-size: 13px;overflow: hidden;   <?php if ($account['RO_B']-$account['RO_P']==0)echo "background:#505050";else echo "background:#2381c6"; ?>;color: #fff">
+                                      <span style="font-size: 25px;color: #fff">{{ $account['RO_B']-$account['RO_P'] }}</span>
+                                      <br>
+                                     ر-ع
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-3">
+                                    <div class="col-xs-12 text-center" style="padding: 0px; box-shadow: 0px 0px 9px #bbb;padding: 20px 0px ;font-size: 13px;overflow: hidden; <?php if ($account['USD_B']-$account['USD_P']==0)echo "background:#505050";else echo "background:#2381c6"; ?>;color: #fff">
+                                      <span style="font-size: 25px;color: #fff">{{ $account['USD_B']-$account['USD_P'] }}</span>
+                                      <br>
+                                     دولار
+                                    </div>
+                                  </div>
+
+                                 
+
+                                </div>
+
+                                 <div class="col-xs-12">
+                                    <hr>
+                                  </div>
+
+
+                              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
                              </div>
 
@@ -203,11 +318,13 @@
                                       <td>اشعار الانشاء</td>
                                       <td>وذلك عن</td>
 
+                                      <td>عملية</td>
+
                                     </tr>
                                     @foreach($deal as $mydeal)
                                     <tr>
                                       <td>{{ $mydeal->id }}</td>
-                                      <td>
+                                      <td style="<?php if($mydeal->deal_borrow_payback=='borrow')echo "background:#5191d1"; else echo   "background:#3fcf7f";?>;color: #fff">
                                         <?php if($mydeal->deal_borrow_payback=='borrow')echo "قيد";else echo "خصم"; ?>
                                          
 
@@ -235,6 +352,14 @@
 
                                       </td>
                                       <td>{{ $mydeal->for }}</td>
+
+                                      <td>
+                                        <a href="/deal/{{$mydeal->id}}/edit">
+                                          <span class="fa fa-edit" style="color: #13c4a5"></span>
+                                        </a>
+                                      </td>
+
+
                                       
                                     </tr>
                                     @endforeach
