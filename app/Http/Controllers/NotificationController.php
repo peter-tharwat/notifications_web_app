@@ -19,17 +19,29 @@ class NotificationController extends Controller
     		{
     			 $mount=MessageController::is_calc_account($client[$i]->id);
     			 if($mount)
-	    			 if( (strtotime(date('Y-m-d H:i:s'))-strtotime($client[$i]->next_send)) <0)
-	    			 {	
-	    			  	MessageController::send_notification($client[$i]->id,$client[$i]->send_not_methods);
-
-					    	$date = date("Y-m-d H:i:s");
-				            $mod_date = strtotime($date.$client[$i]->send_not_period);
-				            $mod_date= date("Y-m-d H:i:s",$mod_date);
-
-           		 			$client[$i]->next_send=$mod_date;
-
-	    			 }
+	    			 {
+	    			 	 
+	    			 	if( strtotime( date('Y-m-d H:i:s') )> strtotime($client[$i]->next_send) )
+	 	    			 {	
+	 	    			 	
+	 	    			  	MessageController::send_notification($client[$i]->id,$client[$i]->send_not_methods);
+	 
+	 					    	 
+	          		            $date = date("Y-m-d H:i:s");  
+	 					        $mod_date = strtotime($date.$client[$i]->send_not_period);
+	 					        $mod_date= date("Y-m-d H:i:s",$mod_date);
+	 
+	 
+	 				            $client =   \App\Client::where('id',$client[$i]->id)
+	 				        	->update(
+	 				            [
+	 				            	'next_send'=>$mod_date,
+	 				            	'last_send'=>date("Y-m-d H:i:s")
+	 				            ]);
+	   		 			 
+	 
+	 	    			 }
+	    			}
 	    		else $client[$i]->send_not='off';
     		}
     	}   	

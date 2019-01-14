@@ -76,8 +76,7 @@ Route::POST('/message/destroy','MessageController@destroy');
 }); 
 
 
-
-
+ 
 Auth::routes();
 
 Route::get('/register', function(){

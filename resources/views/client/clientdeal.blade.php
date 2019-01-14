@@ -156,7 +156,7 @@
                                   </div>
                                   <div class="col-xs-3">
                                     <div class="col-xs-12 text-center" style="padding: 0px;border-radius: 8px;box-shadow: 0px 0px 9px #bbb;padding: 20px 0px ;font-size: 13px;overflow: hidden;">
-                                      <span style="font-size: 25px;color: #14cc66">{{ $account['YER_P'] }}</span>
+                                      <span style="font-size: 13px;color: #14cc66">{{ $account['YER_P'] }}</span>
                                       <br>
                                      ر-ي
                                     </div>
@@ -202,7 +202,7 @@
                                   </div>
                                   <div class="col-xs-3">
                                     <div class="col-xs-12 text-center" style="padding: 0px;border-radius: 8px;box-shadow: 0px 0px 9px #bbb;padding: 20px 0px ;font-size: 13px;overflow: hidden;">
-                                      <span style="font-size: 25px;color: #14cc66">{{ $account['YER_B'] }}</span>
+                                      <span style="font-size: 13px;color: #14cc66">{{ $account['YER_B'] }}</span>
                                       <br>
                                      ر-ي
                                     </div>
@@ -266,7 +266,7 @@
                                     <div class="col-xs-12 text-center" style="padding: 0px; box-shadow: 0px 0px 9px #bbb;padding: 20px 0px ;font-size: 13px;overflow: hidden;
                                     <?php if ($account['YER_B']-$account['YER_P']==0)echo "background: #505050";else echo "background: #2381c6"; ?>
                                     ;color: #fff">
-                                      <span style="font-size: 25px;color: #fff">{{ $account['YER_B']-$account['YER_P'] }}</span>
+                                      <span style="font-size: 13px;color: #fff">{{ $account['YER_B']-$account['YER_P'] }}</span>
                                       <br>
                                      ر-ي
                                     </div>
