@@ -40,7 +40,9 @@
 </head>
 
 <style type="text/css">
- 	
+ 	table{
+ 		min-width: 700px;
+ 	}
   input{
     border-radius: 0px!important;
     box-shadow: none!important;

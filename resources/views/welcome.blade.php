@@ -46,8 +46,8 @@
 		  			آخر المعاملات
 		  		</div>
 
-			  	<div class="cl-xs-12" style="border:1px solid #5191d1;min-height: 250px;">
-			  		 <table class="table" style="padding: 0px;">
+			  	<div class="cl-xs-12" style="border:1px solid #5191d1;min-height: 250px;overflow: auto;">
+			  		 <table class="table" style="padding: 0px;min-width: 700px;">
                                <thead class="thead" style="background: #f2fffd;padding: 5px ">
                                    <tr>
                                        <td>كود</td>
@@ -137,9 +137,9 @@
 		  			آخر الرسائل
 		  		</div>
  
-		  		<div class="cl-xs-12" style="padding: 0px;border:1px solid #3fcf7f;min-height: 250px;">
+		  		<div class="cl-xs-12" style="padding: 0px;border:1px solid #3fcf7f;min-height: 250px;overflow: auto;">
 		  			<?php $message=\App\Http\Controllers\MessageController::get_messages_home(); ?>
-			  		<table class="table" style="padding: 0px;">
+			  		<table class="table" style="padding: 0px;min-width: 400px;">
                                <thead class="thead" style="background: #f2fffd;padding: 5px ">
                                    <tr>
                                        <td>كود</td>
