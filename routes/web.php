@@ -86,7 +86,7 @@ Route::POST('/register', function(){
 	return redirect('/login');
 });
 
-Route::get('/schadual_run_command','NotificationController@schadual_run_command');
+Route::get('/schadual_run_command_test','NotificationController@schadual_run_command');
 Route::get('/track/{id?}', 'ClientController@track')->name('track');
 
 

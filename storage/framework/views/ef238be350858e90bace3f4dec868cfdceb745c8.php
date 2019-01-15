@@ -545,7 +545,7 @@ var myChart1 = new Chart(ctx, {
         labels: ["ريال سعودي", "ريال يمني", "ريال عماني", "دولار"],
         datasets: [{
           
-            data: [ msg['total_borrow']['RS'], msg['total_borrow']['YER'], msg['total_borrow']['RO'], msg['total_borrow']['USD']],
+            data: [ msg['total_borrow']['RS'], msg['total_borrow']['YER']/1000, msg['total_borrow']['RO'], msg['total_borrow']['USD']],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
@@ -587,7 +587,7 @@ var myBarChart0 = new Chart(myBarChart1, {
         labels: ["ريال سعودي", "ريال يمني", "ريال عماني", "دولار"],
         datasets: [{
             label: 'إحصائيات السداد',
-            data: [msg['total_payback']['RS'], msg['total_payback']['YER'], msg['total_payback']['RO'], msg['total_payback']['USD']],
+            data: [msg['total_payback']['RS'], msg['total_payback']['YER']/1000, msg['total_payback']['RO'], msg['total_payback']['USD']],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',

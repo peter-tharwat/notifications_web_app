@@ -8,7 +8,7 @@
                     <header class="panel-heading text-right" style="padding: 5px 6px;">
                         <div class="col-xs-8" style="padding: 0px;">
                             <span class="hidden-sm" style="padding: 3px;display: inline-block;">عرض كافة الموظف</span>  
-                            <form method="POST" action="/emp/destroy/" style="display: inline-block;margin: 0px" id="removeempform">
+                            <form method="POST" action="/emp/destroy" style="display: inline-block;margin: 0px" id="removeempform">
                               {{ csrf_field()}}
                               <input type="hidden" name="id" value="" id="removeid">
                               

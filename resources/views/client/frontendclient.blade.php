@@ -132,12 +132,12 @@
 		 
 
 
-		 <div class="col-xs-12 text-center" style="position: absolute;bottom: 0px;padding: 15px 0px ;background: #fff" >
+		 <div class="col-xs-12 text-center" style=" padding: 15px 0px ;background: #fff;margin-top: 50px" >
 			 	لاي استفسار بخصوص حسابكم يرجى التواصل مع المحاسب على رقم 00967701041476
 او ارقامنا الاخرى
 فرع المكلا 00967770060117
 فرع صلالة 0096894225255
-			 </div>
+		</div>
 
 
 
