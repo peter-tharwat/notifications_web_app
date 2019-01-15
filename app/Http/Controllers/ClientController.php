@@ -172,11 +172,22 @@ class ClientController extends Controller
                 'send_not_methods'=>$send_not_methods,
                 'send_not'=>$send_not,
                 'send_not_period'=>$request->send_not_period,
-                'next_send'=>$mod_date 
+                
                 
 
             ]
         );
+
+        $client0= \App\Client::where('id',$id)->get()->first();
+
+        if($request->send_not_period!= $client0['send_not_period'])
+        {
+           $client2 =   \App\Client::where('id',$id)
+        ->update(
+            [
+                'next_send'=>$mod_date
+            ]); 
+        }
 
 
         return redirect('/client')->with('data', ['alert'=>'تم تحديث بيانات العميل '.$client['name'] ,'alert-type'=>'success']);
