@@ -1,13 +1,14 @@
 @extends('header.header')
-
 @section('content')
+
+ 
      <div class="col-xs-12 effect-content"  >
 
             <div class="panel " >
                 <section >
                     <header class="panel-heading text-right" style="padding: 5px 6px;">
-                        <div class="col-xs-8" style="padding: 0px;">
-                            <span class="hidden-sm" style="padding: 3px;display: inline-block;">عرض كافة العملاء</span>  
+                        <div class="col-xs-12 col-sm-12 col-md-4" style="padding: 0px;">
+                            <span   style="padding: 3px;display: inline-block;">عرض كافة العملاء</span>  
                             <form method="POST" action="/client/destroy" style="display: inline-block;margin: 0px" id="removeclientform">
                               {{ csrf_field()}}
                               <input type="hidden" name="id" value="" id="removeid">
@@ -31,7 +32,67 @@
                             
 
                         </div>
-                        <div style="padding: 0px" class="col-xs-2 ">
+
+
+                        <div style="padding: 0px;direction: unset;text-align: center;" class="col-xs-12 col-sm-12 col-md-2">
+                         <span class="btn btn-info btn-xs"
+                         onclick="
+                         $('.has_no_mount').fadeIn('show');
+                         $('.has_mount').fadeIn('show');
+                         " 
+                         >الكل</span>
+
+
+                         <span class="btn btn-success btn-xs"
+                         onclick="
+                         $('.has_no_mount').fadeOut(0);
+                         $('.has_mount').fadeIn(0);
+                         " 
+                         > لهم رصيد</span>
+
+                         <span class="btn btn-primary btn-xs"
+                         onclick="
+                          
+                         $('.has_mount').fadeOut(0);
+                         $('.has_no_mount').fadeIn(0);
+                         " 
+
+                         > ليس لهم رصيد</span>
+                        </div>
+
+
+
+
+                        <div style="padding: 0px;direction: unset;text-align: center;" class="col-xs-12 col-sm-12 col-md-2">
+                         <span class="btn btn-info btn-xs"
+                         onclick="
+                         $('.send_not').fadeIn('show');
+                         $('.dont_send_not').fadeIn('show');
+                         " 
+                         >الكل</span>
+
+
+                         <span class="btn btn-success btn-xs"
+                         onclick="
+                         
+                          $('.dont_send_not').fadeOut(0);
+                         $('.send_not').fadeIn(0);
+                         " 
+                         >يتم ارسال اشعار</span>
+
+                         <span class="btn btn-primary btn-xs"
+                         onclick="
+                          $('.send_not').fadeOut(0);
+                         $('.dont_send_not').fadeIn(0);
+                        
+                         " 
+
+                         >لا يرسل اشعار</span>
+                        </div>
+
+
+
+                        <div style="padding: 0px;direction: unset;text-align: center;" class="col-xs-12 col-sm-12 col-md-2 ">
                           <form method="get" action="/client/search">
                           <div class=" navbar-form pull-left shift" style="padding: 0px;margin: 0px;">
                             <i class="fa fa-search text-muted"></i> <input class="input-sm form-control" placeholder="بحث" type="text" style="border:1px solid #13c4a5!important;background: #f2fffd" name="search">
@@ -40,7 +101,7 @@
                           
                         </div>
 
-                        <div class="col-xs-2" style="padding: 0px;direction: ltr!important;">
+                        <div class="col-xs-12 col-sm-12 col-md-2" style="padding: 0px;direction: ltr!important;">
                             <a style="padding: 2px 5px; direction: ltr!important;display: inline-block;float: left;" href="/client/create">
                                 <span class="fa fa-plus" style="background: #2381c6;color: #fff;border-radius: 50%;padding: 4px 5px ;cursor: pointer;"> </span>
                             </a>
@@ -49,7 +110,7 @@
                     </header>
                     <div class="panel-body" style=" padding: 0px;">
                        <div class="col-xs-12" style="padding: 0px;overflow: auto;">
-                           <table class="table" style="padding: 0px;min-width: 843px">
+                           <table class="table" style="padding: 0px;min-width: 943px">
                                <thead class="thead" style="background: #f2fffd;padding: 5px ">
                                    <tr>
                                        <td>كود</td>
@@ -63,6 +124,7 @@
                                        <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">عماني</td>
                                        <td style="width: 50px;background: #ffffb9;display: inline-block;text-align: center;padding:6px 0px;">دولار</td>
                                        <td style="width: 50px;background: #cbffb9;display: inline-block;text-align: center;padding:6px 0px;">اشعار</td>
+                                       <td style="width: 70px;background: #51c1d1;display: inline-block;text-align: center;padding:6px 0px;color: #fff">عبر</td>
 
 
                                        
@@ -71,10 +133,18 @@
                                </thead>
                                <tbody>
                                 @foreach($client as $myclient)
-                                @if(App\Http\Controllers\MessageController::is_calc_account($myclient->id))
-                                  <tr >
+                                
+                                  <tr class="<?php  if(App\Http\Controllers\MessageController::is_calc_account($myclient->id))echo 'has_mount ';else echo 'has_no_mount '; 
+
+                                    if($myclient->send_not=='on')echo 'send_not '; else echo 'dont_send_not ';
+
+                                  ?>">
                                      <td>{{  $myclient->id }}</td>
-                                     <td>{{  $myclient->name }}</td>
+                                     <td>
+                                      <a href="/client/details/{{ $myclient->id }}">
+                                      {{  $myclient->name }}
+                                      </a>
+                                    </td>
                                      <td>{{  $myclient->email }}</td>
                                      <td>{{  $myclient->phone }}</td>
 
@@ -93,6 +163,19 @@
                                           @endif
 
                                         </td>
+
+
+                                        <td style="width: 70px;background: #51c1d1;display: inline-block;text-align: center;padding:6px 0px;height: 33px;color: #fff">
+
+                                         <?php if (strpos($myclient->send_not_methods , 'whatsapp') !== false) {echo '<span class="fab fa-whatsapp" style="color:#fff;font-size: 16px; "></span>';}?>
+
+                                      <?php    if (strpos($myclient->send_not_methods , 'email') !== false) {echo '-<span class="far fa-envelope" style="color:#fff;font-size: 16px; "></span>';}?>
+
+                                      <?php   if (strpos($myclient->send_not_methods, 'sms') !== false) {echo '-<span class="fas fa-mobile-alt" style="color:#fff;font-size: 16px; "></span>';}?> 
+
+
+                                        </td>
+
 
 
 
@@ -127,7 +210,7 @@
  
                                      </td>
                                   </tr>  
-                                  @endif        
+                                    
                                 @endforeach
                                         
 

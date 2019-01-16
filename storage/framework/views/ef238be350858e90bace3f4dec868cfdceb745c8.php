@@ -138,6 +138,10 @@
 	{
 		font-size: 14px;
 	}
+.has_no_mount
+  {
+    display: none;
+  }
 	
 	 
 </style>
