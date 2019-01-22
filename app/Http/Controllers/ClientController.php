@@ -51,12 +51,13 @@ class ClientController extends Controller
 
              
             $date = date("Y-m-d H:i:s");
-            $mod_date;
-            $mod_date = strtotime($date.$client->send_not_period);
+            $mod_date = strtotime($date.$request->send_not_period);
             $mod_date= date("Y-m-d H:i:s",$mod_date);
 
 
             $client->next_send=$mod_date;
+
+             
 
 
         }
@@ -92,6 +93,7 @@ class ClientController extends Controller
         $client->details = $request->details;
         $client->save();
 
+        
         return redirect('/client')->with('data', ['alert'=>'تم اضافة العميل بنجاح','alert-type'=>'success']);
     }
  

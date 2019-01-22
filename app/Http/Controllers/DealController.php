@@ -69,9 +69,9 @@ class DealController extends Controller
                     $send_not_methods.=','.$request->send_not_methods[$i];
 
 
-                $date = date("Y-m-d");
+                $date = date("Y-m-d H:i:s");
                 $mod_date;
-                $mod_date = strtotime($date.$client->send_not_period);
+                $mod_date = strtotime($date.$request->send_not_period);
                 $mod_date= date("Y-m-d H:i:s",$mod_date);
                 $client->next_send=$mod_date;
 
